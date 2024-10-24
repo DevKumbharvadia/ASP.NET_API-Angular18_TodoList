@@ -5,6 +5,7 @@ import { AdminComponent } from './component/admin/admin.component';
 import { TodoComponent } from './component/todo/todo.component';
 import { authGuard } from './guard/auth.guard';
 import { RegisterComponent } from './component/register/register.component';
+import { HomeComponent } from './component/home/home.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'todo',
         component: TodoComponent,
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
       },
     ],
   },

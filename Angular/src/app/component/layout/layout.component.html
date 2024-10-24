@@ -3,9 +3,19 @@
       <a href="javascript:void(0)" class="text-white text-2xl font-bold">Logo</a>
       <div class="hidden sm:flex">
         <ul class="flex space-x-4">
-          <li>
-            <a class="text-gray-300 hover:text-white" routerLink="/todo" routerLinkActive="active">Home</a>
-          </li>
+            <li>
+              <a class="text-gray-300 hover:text-white mx-4" routerLink="home" routerLinkActive="active">Home</a>
+            </li>
+          @if(userRoles == "Admin"){
+            <li>
+              <a class="text-gray-300 hover:text-white mx-4" routerLink="admin" routerLinkActive="active">Admin</a>
+            </li>
+          }
+          @if(userRoles == "User"){
+            <li>
+              <a class="text-gray-300 hover:text-white mx-4" routerLink="todo" routerLinkActive="active">Todo list</a>
+            </li>
+          }
         </ul>
       </div>
       <form class="flex">

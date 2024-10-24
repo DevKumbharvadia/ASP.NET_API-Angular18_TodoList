@@ -1,28 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\Asus\\Desktop\\Del\\login\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\",
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__test/TodoDb/True/SqlTable/dbo.UserAudits.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|c:\\users\\student.ait-acer-9-30\\desktop\\del\\todolist\\asp.net_api-angular18_todolist\\backend\\todoapi\\todoapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|solutionrelative:todoapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|c:\\users\\student.ait-acer-9-30\\desktop\\del\\todolist\\asp.net_api-angular18_todolist\\backend\\todoapi\\todoapi\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|solutionrelative:todoapi\\models\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|c:\\users\\student.ait-acer-9-30\\desktop\\del\\todolist\\asp.net_api-angular18_todolist\\backend\\todoapi\\todoapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|c:\\users\\asus\\desktop\\del\\login\\asp.net_api-angular18_todolist\\backend\\todoapi\\todoapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B960AE0E-0D31-4225-9FF2-EB43C4E4478C}|TodoAPI\\TodoAPI.csproj|solutionrelative:todoapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__test/TodoDb/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Migrations\\20241024110043_fm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TodoAPI\\Migrations\\20241024110043_fm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,21 +17,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Models\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "TodoAPI\\Models\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Models\\Entity\\User.cs",
-              "RelativeToolTip": "TodoAPI\\Models\\Entity\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAkwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T11:20:21.797Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -54,56 +26,20 @@
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__test/TodoDb/True/SqlTable/dbo.UserAudits.sql",
               "ToolTip": "dbo.UserAudits [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-10-24T11:02:11.698Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20241024110043_fm.cs",
-              "DocumentMoniker": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Migrations\\20241024110043_fm.cs",
-              "RelativeDocumentMoniker": "TodoAPI\\Migrations\\20241024110043_fm.cs",
-              "ToolTip": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Migrations\\20241024110043_fm.cs",
-              "RelativeToolTip": "TodoAPI\\Migrations\\20241024110043_fm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T11:00:43.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "TodoAPI\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "TodoAPI\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAAwFkAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T10:57:17.787Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.Users [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__test/TodoDb/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "dbo.Users [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-10-24T10:57:08.86Z",
+              "WhenOpened": "2024-10-24T17:29:41.614Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "TodoAPI\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Student.AIT-ACER-9-30\\Desktop\\Del\\TodoList\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Controllers\\UserController.cs",
-              "RelativeToolTip": "TodoAPI\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAYwJYAAAAJAAAAAAAAAA==",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\Desktop\\Del\\login\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "TodoAPI\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Asus\\Desktop\\Del\\login\\ASP.NET_API-Angular18_TodoList\\Backend\\TodoAPI\\TodoAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "TodoAPI\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAADwv0YAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T10:40:19.695Z",
+              "WhenOpened": "2024-10-24T14:28:49.839Z",
               "EditorCaption": ""
             }
           ]

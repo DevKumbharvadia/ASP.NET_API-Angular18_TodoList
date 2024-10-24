@@ -15,7 +15,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   //   // If the request URL is in the ignore list, pass the request without adding the Authorization header
   //   return next(req);
   // }
-  debugger;
   const clonedReq = req.clone({
     setHeaders:{
       Authorization: `Bearer ${token}`

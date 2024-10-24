@@ -15,7 +15,8 @@ export class AuthService {
   private jwtTokenKey = 'jwtToken';
   private userIdKey = 'UserId';
   private userRolesKey = 'UserRoles';
-  USER_ID: string | null = this.getUserId();
+  USER_ROLES:any;
+  USER_ID:any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -36,13 +37,17 @@ export class AuthService {
 
   setUserId(data: any){
     sessionStorage.setItem(this.userIdKey, data)
+    this.USER_ID = data;
   }
 
   setUserRoles(data: any){
+    //ok
     sessionStorage.setItem(this.userRolesKey,data);
+    this.USER_ROLES = data
   }
 
   getUserId(){
+    //ok
     return sessionStorage.getItem(this.userIdKey);
   }
 
@@ -55,6 +60,8 @@ export class AuthService {
   clearTokens() {
     sessionStorage.removeItem(this.jwtTokenKey);
     sessionStorage.removeItem(this.refreshTokenKey);
+    sessionStorage.removeItem(this.userRolesKey);
+    sessionStorage.removeItem(this.userIdKey);
   }
 
   
@@ -144,7 +151,9 @@ export class AuthService {
           this.setJwtToken(response.data.jwtToken); // Assuming new JWT is in response.data.JwtToken
           this.setRefreshToken(response.data.RefreshToken); // Assuming refresh token is in response.data.RefreshToken
           this.setUserId(response.data.userId); 
-          this.getUserRoles();
+          console.log("**********auth****************")
+          console.log(response, this.getUserId());
+          console.log("**********auth****************")
         }
       }),
       catchError(error => {
@@ -164,11 +173,9 @@ export class AuthService {
   }
 
   getUserRoles(){
-    debugger;
-    this.http.get<any>(`https://localhost:7250/api/User/roles/${this.USER_ID}`,{}).subscribe((res:any)=>{
-      this.setUserRoles(res.data);
-      console.log(res);
-      debugger;
+    this.http.get<any>(`https://localhost:7250/api/User/roles/${sessionStorage.getItem(this.userIdKey)}`,{}).subscribe((res:any)=>{
+      this.setUserRoles(res.data)
+      console.log(res.data);
     })
   }
 }

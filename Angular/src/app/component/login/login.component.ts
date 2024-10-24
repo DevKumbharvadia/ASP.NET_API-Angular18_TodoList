@@ -24,7 +24,7 @@ export class LoginComponent {
       (res: any) => {
         if (res && res.success) {
           alert('Login Success');
-          this.router.navigateByUrl('layout/todo'); // Navigate to dashboard
+          this.router.navigateByUrl('layout/home'); // Navigate to dashboard
         } else {
           alert(res.message || 'Login failed');
         }
