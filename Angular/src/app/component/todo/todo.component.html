@@ -50,9 +50,9 @@
           <button
               type="button" 
               class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-              (click)="onUpdate()"
+              (click)="todoObj.id ?onUpdate():addTodo()"
           >
-             Update
+             {{todoObj.id? 'Update' : 'Add'}}
           </button>
           <button
               type="button"
@@ -60,13 +60,6 @@
               (click)="resetForm()"
           >
               Reset
-          </button>
-          <button
-              type="button" 
-              class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-              (click)="addTodo()"
-          >
-              Submit
           </button>
         </div>
 </div>

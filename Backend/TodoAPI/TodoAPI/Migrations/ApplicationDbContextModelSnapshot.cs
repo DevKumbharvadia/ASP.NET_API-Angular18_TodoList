@@ -86,6 +86,18 @@ namespace TodoAPI.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = new Guid("5d36cf15-6363-4a0c-8baf-c7c8dfd4e2d1"),
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            RoleId = new Guid("1cb5254f-e325-4f11-95c6-b852064c7805"),
+                            RoleName = "User"
+                        });
                 });
 
             modelBuilder.Entity("TodoAPI.Models.TodoItem", b =>
@@ -151,6 +163,26 @@ namespace TodoAPI.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("b104120f-6a47-4da3-bade-c3da56757761"),
+                            CreatedAt = new DateTime(2024, 10, 24, 11, 0, 43, 9, DateTimeKind.Utc).AddTicks(815),
+                            Email = "admin@example.com",
+                            PasswordHash = "$2a$11$fuAiHG1NaiwH5Zq3z85nl.WALFCdtEon5LBnaKU/bkJSkIGL.b.Vq",
+                            UpdatedAt = new DateTime(2024, 10, 24, 11, 0, 43, 9, DateTimeKind.Utc).AddTicks(820),
+                            Username = "admin"
+                        },
+                        new
+                        {
+                            UserId = new Guid("cc0344f1-8e97-47d1-b7d4-c323d5d12383"),
+                            CreatedAt = new DateTime(2024, 10, 24, 11, 0, 43, 111, DateTimeKind.Utc).AddTicks(137),
+                            Email = "user@example.com",
+                            PasswordHash = "$2a$11$VLL5p9y/lOnX6Ruv3pnkzOLje.Z18k3H/GFG3DZpv8jfRMZBfipuO",
+                            UpdatedAt = new DateTime(2024, 10, 24, 11, 0, 43, 111, DateTimeKind.Utc).AddTicks(142),
+                            Username = "user"
+                        });
                 });
 
             modelBuilder.Entity("TodoAPI.Models.UserRole", b =>
@@ -166,6 +198,18 @@ namespace TodoAPI.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("b104120f-6a47-4da3-bade-c3da56757761"),
+                            RoleId = new Guid("5d36cf15-6363-4a0c-8baf-c7c8dfd4e2d1")
+                        },
+                        new
+                        {
+                            UserId = new Guid("cc0344f1-8e97-47d1-b7d4-c323d5d12383"),
+                            RoleId = new Guid("1cb5254f-e325-4f11-95c6-b852064c7805")
+                        });
                 });
 
             modelBuilder.Entity("TodoAPI.Models.Entity.RefreshToken", b =>

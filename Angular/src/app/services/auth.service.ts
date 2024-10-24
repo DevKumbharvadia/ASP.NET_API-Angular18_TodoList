@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 import { Token } from '@angular/compiler';
+import { IRole } from '../model/interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class AuthService {
   private refreshTokenKey = 'refreshToken';
   private jwtTokenKey = 'jwtToken';
   private userIdKey = 'UserId';
+  private userRolesKey = 'UserRoles';
   USER_ID: string | null = this.getUserId();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -36,6 +38,10 @@ export class AuthService {
     sessionStorage.setItem(this.userIdKey, data)
   }
 
+  setUserRoles(data: any){
+    sessionStorage.setItem(this.userRolesKey,data);
+  }
+
   getUserId(){
     return sessionStorage.getItem(this.userIdKey);
   }
@@ -51,24 +57,7 @@ export class AuthService {
     sessionStorage.removeItem(this.refreshTokenKey);
   }
 
-  // Login function
-  login(username: string, password: string): Observable<any> {
-    const loginObj = { username, password };
-    return this.http.post(`${this.apiUrl}/login`, loginObj).pipe(
-      tap((response: any) => {
-        if (response && response.success) {
-          this.setJwtToken(response.data.jwtToken); // Assuming new JWT is in `response.data.JwtToken`
-          this.setRefreshToken(response.data.RefreshToken); // Assuming refresh token is in `response.data.RefreshToken`
-          this.setUserId(response.data.userId); 
-        }
-      }),
-      catchError(error => {
-        console.error('Login failed', error);
-        return of(null); // Handle error gracefully
-      })
-    );
-  }
-
+  
   // Refresh token function
   refreshToken(): Observable<any> {
     const refreshToken = this.getRefreshToken();
@@ -76,7 +65,7 @@ export class AuthService {
       this.logout(); // No refresh token, log out user
       return of(null);
     }
-
+    
     return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken }).pipe(
       tap((response: any) => {
         if (response && response.success) {
@@ -93,14 +82,14 @@ export class AuthService {
       })
     );
   }
-
+  
   // Check if the token is expired or about to expire
   isTokenExpired(token: string): boolean {
     const expiry = JSON.parse(atob(token.split('.')[1])).exp;
     const now = Math.floor(new Date().getTime() / 1000);
     return now >= expiry;
   }
-
+  
   // Automatically refresh token if it's about to expire
   autoRefreshToken(): Observable<boolean> {
     const token = this.getJwtToken();
@@ -114,18 +103,72 @@ export class AuthService {
         })
       );
     }
-
+    
     return of(true); // Token is valid
   }
-
+  
   // Logout function
   logout() {
-    this.clearTokens();
-    this.router.navigateByUrl('/login');
+    const userId = this.getUserId();
+    if (userId) {
+      this.http.post(`https://localhost:7250/api/User/logout/${userId}`, {})
+        .subscribe({
+          next: (res: any) => {
+            console.log('Logout successful:', res);  // Successful response handling
+            this.clearTokens();  // Clear tokens upon successful logout
+            this.router.navigateByUrl('/login');  // Redirect to login page
+          },
+          error: (err: any) => {
+            console.error('Logout failed:', err);  // Handle any errors that occurred during logout
+            
+            // Optional: Display error message to the user (you can use a toast, modal, or alert)
+            alert('An error occurred during logout. Please try again.');
+          },
+          complete: () => {
+            console.log('Logout request completed');  // Optional: Log when the request is complete
+          }
+        });
+    } else {
+      console.log('No user ID found, clearing tokens and navigating to login');
+      this.clearTokens();
+      this.router.navigateByUrl('/login');
+    }
+  }
+  
+  
+  login(username: string, password: string): Observable<any> {
+    const loginObj = { username, password };
+    return this.http.post(`${this.apiUrl}/login`, loginObj).pipe(
+      tap((response: any) => {
+        if (response && response.success) {
+          this.setJwtToken(response.data.jwtToken); // Assuming new JWT is in response.data.JwtToken
+          this.setRefreshToken(response.data.RefreshToken); // Assuming refresh token is in response.data.RefreshToken
+          this.setUserId(response.data.userId); 
+          this.getUserRoles();
+        }
+      }),
+      catchError(error => {
+        console.error('Login failed', error);
+        return of(null); // Handle error gracefully
+      })
+    );
   }
 
   // Check if the user is logged in
   isLoggedIn(): boolean {
     return !!this.getJwtToken(); // Check if JWT token exists
+  }
+
+  getAllRoles(): Observable<any>{
+    return this.http.get<any>("https://localhost:7250/api/User/Role");
+  }
+
+  getUserRoles(){
+    debugger;
+    this.http.get<any>(`https://localhost:7250/api/User/roles/${this.USER_ID}`,{}).subscribe((res:any)=>{
+      this.setUserRoles(res.data);
+      console.log(res);
+      debugger;
+    })
   }
 }

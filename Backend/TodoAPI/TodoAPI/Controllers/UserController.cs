@@ -31,7 +31,6 @@ namespace TodoAPI.Controllers
         [HttpPost("register")]
         public ActionResult<ApiResponse<User>> Register([FromBody] UserRegisterModel model)
         {
-
             if (_context.Users.Any(u => u.Username == model.Username))
             {
                 return BadRequest(new ApiResponse<User>
@@ -42,9 +41,12 @@ namespace TodoAPI.Controllers
                 });
             }
 
+
+            var _UserId = Guid.NewGuid();
+
             var user = new User
             {
-                UserId = Guid.NewGuid(),
+                UserId = _UserId,
                 Username = model.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
                 Email = model.Email,
@@ -52,6 +54,7 @@ namespace TodoAPI.Controllers
                 UpdatedAt = DateTime.UtcNow
             };
 
+            _context.UserRoles.Add(new UserRole { RoleId = model.RoleId, UserId = _UserId });
             _context.Users.Add(user);
 
             try
@@ -111,7 +114,7 @@ namespace TodoAPI.Controllers
                 Token = refreshToken,
                 Expires = DateTime.UtcNow.AddDays(7),
                 Created = DateTime.UtcNow,
-                UserId = user.UserId
+                UserId = user.UserId,
             });
 
             _context.UserAudits.Add(new UserAudit { LoginTime = DateTime.UtcNow, UserId = user.UserId });
@@ -138,9 +141,95 @@ namespace TodoAPI.Controllers
                 {
                     JwtToken = jwtToken,
                     RefreshToken = refreshToken,
-                    UserId = user.UserId
+                    UserId = user.UserId,
                 }
             });
+        }
+
+        [HttpGet("roles/{userId}")]
+        public ActionResult<ApiResponse<List<string>>> GetUserRoles(Guid userId)
+        {
+            try
+            {
+                // Select role names for the user, joining UserRole and Role entities
+                var roles = _context.UserRoles
+                    .Where(ur => ur.UserId == userId)
+                    .Select(ur => ur.Role.RoleName) // Select RoleName instead of RoleId
+                    .ToList();
+
+                if (!roles.Any())
+                {
+                    return NotFound(new ApiResponse<List<string>>
+                    {
+                        Success = false,
+                        Message = "User has no roles assigned",
+                        Data = null
+                    });
+                }
+
+                return Ok(new ApiResponse<List<string>>
+                {
+                    Success = true,
+                    Message = "Roles retrieved successfully",
+                    Data = roles
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ApiResponse<List<string>>
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving roles",
+                    Data = null
+                });
+            }
+        }
+
+
+        // POST: api/user/logout/{userId}
+        [HttpPost("logout/{UserId}")]
+        public IActionResult Logout(Guid UserId)
+        {
+            try
+            {
+                // Find the last audit entry for the user (the most recent login without a logout time)
+                var lastAudit = _context.UserAudits
+                    .Where(ua => ua.UserId == UserId && ua.LogoutTime == null)
+                    .OrderByDescending(ua => ua.LoginTime)
+                    .FirstOrDefault();
+
+                if (lastAudit == null)
+                {
+                    return BadRequest(new ApiResponse<UserAudit>
+                    {
+                        Message = "No active login session found for this user",
+                        Success = false,
+                        Data = null
+                    });
+                }
+
+                // Set the logout time to the current time
+                lastAudit.LogoutTime = DateTime.UtcNow;
+                _context.UserAudits.Update(lastAudit);
+                _context.SaveChanges();
+
+                return Ok(new ApiResponse<UserAudit>
+                {
+                    Message = "Logout recorded successfully",
+                    Success = true,
+                    Data = lastAudit
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (consider using a logging framework)
+                return StatusCode(500, new ApiResponse<UserAudit>
+                {
+                    Message = "An error occurred while processing your request.",
+                    Success = false,
+                    Data = null
+                });
+            }
         }
 
         // POST: api/user/refresh-token
@@ -247,6 +336,43 @@ namespace TodoAPI.Controllers
             {
                 rng.GetBytes(randomBytes);
                 return Convert.ToBase64String(randomBytes);
+            }
+        }
+
+        // GET: api/role
+        [HttpGet("Role/")]
+        public ActionResult<ApiResponse<List<Role>>> GetAllRoles()
+        {
+            try
+            {
+                var roles = _context.Roles.ToList();
+
+                if (roles == null || !roles.Any())
+                {
+                    return NotFound(new ApiResponse<List<Role>>
+                    {
+                        Success = false,
+                        Message = "No roles found",
+                        Data = null
+                    });
+                }
+
+                return Ok(new ApiResponse<List<Role>>
+                {
+                    Success = true,
+                    Message = "Roles retrieved successfully",
+                    Data = roles
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you can use a logger here)
+                return StatusCode(500, new ApiResponse<List<Role>>
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving roles",
+                    Data = null
+                });
             }
         }
     }
